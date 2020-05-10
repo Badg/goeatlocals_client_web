@@ -6,5 +6,5 @@ module "taetime_dev-base_svelte" {
     project_name = var.project_name
     container_name = "svelte"
     docker_host = var.docker_host
-    container_network = docker_network.goeatlocals_network.name
+    container_network = docker_network.project_network.name
 }
