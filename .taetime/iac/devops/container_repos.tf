@@ -1,5 +1,5 @@
 # This terraform creates all needed container registries in ECR for local
-# development. MAKE SURE TO RUN THIS IN THE ECR WORKSPACE: taev_root_ecr!!
+# development.
 
 terraform {
     backend "s3" {
@@ -27,6 +27,15 @@ resource "aws_ecr_repository" "goeatlocals_client_web-mod_tile" {
 
     tags = {
         Name  = "Eat Locals: web client: mod tile"
+    }
+}
+
+
+resource "aws_ecr_repository" "goeatlocals_client_web-tileserver_trex" {
+    name = "goeatlocals_client_web/tileserver_trex"
+
+    tags = {
+        Name  = "Eat Locals: web client: tileserver trex"
     }
 
     lifecycle {
