@@ -1,26 +1,64 @@
 <script>
-	export let name;
+	import Mapsplaining from './Mapsplaining.svelte';
+	import SlippyMap from './SlippyMap.svelte';
+	import Mapfilters from './Mapfilters.svelte';
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<h2>Autoreload works :)</h2>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<div class="slippymap-container">
+		<SlippyMap/>
+	</div>
+		<div class="slippymap-overlay-container">
+		<div class="mapsplaining-container">
+			<Mapsplaining name="World"/>
+		</div>
+		<div class="mapfilters-container">
+			<Mapfilters/>
+		</div>
+	</div>
 </main>
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
+
+	.slippymap-overlay-container {
+		box-sizing: border-box;
+        pointer-events: none;
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 7777;
+        height: 100%;
+        width: 100%;
+		padding: 10px;
 	}
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
+	.mapsplaining-container {
+		vertical-align: top;
+		position: relative;
+		display: inline-block;
+		margin: 50px;
+	}
+
+	.mapfilters-container {
+		vertical-align: top;
+		position: relative;
+		display: inline-block;
+		margin: 50px;
+	}
+
+	.slippymap-container {
+		position: relative;
+		width: 100%;
+		height: 100%;
+	}
+
+	main {
+		color: rgb(254, 245, 247);
+		position: relative;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
 	}
 
 	@media (min-width: 640px) {

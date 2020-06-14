@@ -1,10 +1,14 @@
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import babel from '@rollup/plugin-babel';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
+import rootImport from 'rollup-plugin-root-import';
+import postcss from 'rollup-plugin-postcss';
 
 const production = !process.env.ROLLUP_WATCH;
+const legacy = process.env.BUILD_LEGACY;
 
 export default {
 	input: 'src/main.js',
@@ -15,6 +19,13 @@ export default {
 		file: 'public/build/bundle.js'
 	},
 	plugins: [
+		// rootImport({
+		// 	root: `${__dirname}/src`,
+		// 	useEntry: 'prepend',
+
+		// 	// If we don't find the file verbatim, try adding these extensions
+		// 	extensions: ['.mjs', '/index.mjs', '.js', '/index.js'],
+		// }),
 		svelte({
 			// enable run-time checks when not in production
 			dev: !production,
@@ -24,6 +35,11 @@ export default {
 				css.write('public/build/bundle.css');
 			}
 		}),
+		// postcss({
+		// 	sourceMap: false,
+		// 	extract: true,
+		// 	plugins: []
+		// }),
 
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
@@ -35,6 +51,30 @@ export default {
 			dedupe: ['svelte']
 		}),
 		commonjs(),
+
+		legacy &&
+			babel({
+				extensions: ['.js', '.mjs', '.html', '.svelte'],
+				runtimeHelpers: true,
+				exclude: ['node_modules/@babel/**'],
+				presets: [
+					[
+						'@babel/preset-env',
+						{
+							targets: '> 0.25%, not dead',
+						},
+					],
+				],
+				plugins: [
+					'@babel/plugin-syntax-dynamic-import',
+					[
+						'@babel/plugin-transform-runtime',
+						{
+							useESModules: true,
+						},
+					],
+				],
+			}),
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
