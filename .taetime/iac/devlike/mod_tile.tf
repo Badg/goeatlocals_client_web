@@ -30,7 +30,11 @@ resource "docker_container" "goeatlocals_client_web-mod_tile" {
     }
 
     env = [
-        "LC_ALL=C.UTF-8"
+        "LC_ALL=C.UTF-8",
+        # I don't want to explicitly specify this, but it works as a workaround
+        # for a terraform docker provider bug that was resulting in always
+        # forcing replacement of resources
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     ]
 
     entrypoint = [ "/bin/bash", "/project_src/.taetime/iac/devlike/mod_tile_shim.sh" ]

@@ -7,4 +7,5 @@ module "taetime_dev-base_svelte" {
     container_name = "svelte"
     docker_host = var.docker_host
     container_network = docker_network.project_network.name
+    project_data_volume = docker_volume.project_data.name
 }
