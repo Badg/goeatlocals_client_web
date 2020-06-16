@@ -2,6 +2,7 @@
     import { onMount } from 'svelte';
     import mapboxgl from 'mapbox-gl';
 
+    import SlippyMapMarker from './SlippyMapMarker.svelte';
     let mapContainer;
     let slippyMap;
     let drexlMarker;
@@ -27,10 +28,23 @@
         });
         slippyMap.addControl(new mapboxgl.NavigationControl());
 
-        drexlMarker = new mapboxgl.Marker()
-            .setLngLat([-122.2674272, 37.8072493])
-            .addTo(slippyMap);
+        addMarker(-122.2674272, 37.8072493, 'Drexl');
     });
+    function addMarker(placeLong, placeLat, placeName) {
+        let markerElement = document.createElement('div');
+        markerElement.classList.add('slippymap-marker-container');
+        let marker = new mapboxgl.Marker({
+                element: markerElement,
+                anchor: 'bottom'
+            })
+            .setLngLat([placeLong, placeLat])
+            .addTo(slippyMap);
+        let markerComponent = new SlippyMapMarker({
+            target: markerElement,
+            props: {
+                placeName
+            }
+        });
 </script>
 
 <style>
