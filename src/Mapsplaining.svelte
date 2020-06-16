@@ -1,6 +1,17 @@
 <script>
     import Icon from 'svelte-awesome';
     import {search} from 'svelte-awesome/icons';
+
+    export function setPlaceDetails(event) {
+        if (event === undefined) {
+            placeName = defaultPlaceName;
+        } else {
+            placeName = event.detail.placeName;
+        }
+    }
+
+    const defaultPlaceName =  'Select a marker to begin';
+    let placeName = defaultPlaceName;
 </script>
 
 <style>
@@ -67,6 +78,7 @@
     </div>
     <div class="venue-details">
         <ul>
+            <li>{placeName}</li>
             <li>Neighborhood</li>
             <li>Address <span class="venue-distance">(distance)</span></li>
             <li>URL, phone</li>

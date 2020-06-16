@@ -2,15 +2,27 @@
 	import Mapsplaining from './Mapsplaining.svelte';
 	import SlippyMap from './SlippyMap.svelte';
 	import Mapfilters from './Mapfilters.svelte';
+
+	let mapsplainer;
+
+    function catchMarkerMouseover(event) {
+    	mapsplainer.setPlaceDetails(event);
+    }
+
+    function catchMarkerMouseout(event) {
+    	mapsplainer.setPlaceDetails();
+    }
 </script>
 
 <main>
 	<div class="slippymap-container">
-		<SlippyMap/>
+		<SlippyMap
+			on:markerMouseover={catchMarkerMouseover}
+			on:markerMouseout={catchMarkerMouseout}/>
 	</div>
 		<div class="slippymap-overlay-container">
 		<div class="mapsplaining-container">
-			<Mapsplaining name="World"/>
+			<Mapsplaining name="World" bind:this={mapsplainer}/>
 		</div>
 		<div class="mapfilters-container">
 			<Mapfilters/>

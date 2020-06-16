@@ -1,15 +1,19 @@
 <script>
     import { onMount } from 'svelte';
+    import { createEventDispatcher } from 'svelte';
     import mapboxgl from 'mapbox-gl';
 
     import SlippyMapMarker from './SlippyMapMarker.svelte';
+
+    export let center = [-122.2719456, 37.804685];
+    export let zoom = 16;
+
+    const dispatch = createEventDispatcher();
+
     let mapContainer;
     let slippyMap;
     let drexlMarker;
     let drexlPopup;
-
-    export let center = [-122.2719456, 37.804685];
-    export let zoom = 16;
 
     onMount(() => {
         slippyMap = new mapboxgl.Map({
@@ -30,6 +34,15 @@
 
         addMarker(-122.2674272, 37.8072493, 'Drexl');
     });
+    
+    function forwardMarkerMouseover(event) {
+        dispatch('markerMouseover', event.detail);
+    }
+    
+    function forwardMarkerMouseout(event) {
+        dispatch('markerMouseout', event.detail);
+    }
+
     function addMarker(placeLong, placeLat, placeName) {
         let markerElement = document.createElement('div');
         markerElement.classList.add('slippymap-marker-container');
@@ -45,6 +58,9 @@
                 placeName
             }
         });
+        markerComponent.$on('markerMouseover', forwardMarkerMouseover);
+        markerComponent.$on('markerMouseout', forwardMarkerMouseout);
+    }
 </script>
 
 <style>
