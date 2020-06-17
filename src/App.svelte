@@ -1,28 +1,50 @@
 <script>
+	import { onMount } from 'svelte';
 	import Mapsplaining from './Mapsplaining.svelte';
 	import SlippyMap from './SlippyMap.svelte';
 	import Mapfilters from './Mapfilters.svelte';
 
+	// Component references
 	let mapsplainer;
+	let slippyMap;
+
+	// Client state
+	let highlightedPlace = null;
+	let lastPinnedPlace = null;
+	let pinnedPlaces;
 
     function catchMarkerMouseover(event) {
-    	mapsplainer.setPlaceDetails(event);
+    	highlightedPlace = event.detail.place;
     }
 
     function catchMarkerMouseout(event) {
-    	mapsplainer.setPlaceDetails();
+    	highlightedPlace = null;
     }
+
+    onMount(() => {
+    	// TODO: make place class
+    	// TODO: have place class call into child component instead of passing
+    	//		 events up the chain
+    	slippyMap.addMarker({
+    		placeLong: -122.2674272,
+    		placeLat: 37.8072493,
+    		placeName: 'Drexl'});
+    });
 </script>
 
 <main>
 	<div class="slippymap-container">
 		<SlippyMap
-			on:markerMouseover={catchMarkerMouseover}
-			on:markerMouseout={catchMarkerMouseout}/>
+		bind:this={slippyMap}
+		on:markerMouseover={catchMarkerMouseover}
+		on:markerMouseout={catchMarkerMouseout}/>
 	</div>
 		<div class="slippymap-overlay-container">
 		<div class="mapsplaining-container">
-			<Mapsplaining name="World" bind:this={mapsplainer}/>
+			<Mapsplaining
+			bind:this={mapsplainer}
+			highlightedPlace={highlightedPlace}
+			lastPinnedPlace={lastPinnedPlace}/>
 		</div>
 		<div class="mapfilters-container">
 			<Mapfilters/>

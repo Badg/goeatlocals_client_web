@@ -8,6 +8,23 @@
     export let center = [-122.2719456, 37.804685];
     export let zoom = 16;
 
+    export function addMarker(place) {
+        let markerElement = document.createElement('div');
+        markerElement.classList.add('slippymap-marker-container');
+        let marker = new mapboxgl.Marker({
+                element: markerElement,
+                anchor: 'bottom'
+            })
+            .setLngLat([place.placeLong, place.placeLat])
+            .addTo(slippyMap);
+        let markerComponent = new SlippyMapMarker({
+            target: markerElement,
+            props: { place }
+        });
+        markerComponent.$on('markerMouseover', forwardMarkerMouseover);
+        markerComponent.$on('markerMouseout', forwardMarkerMouseout);
+    }
+
     const dispatch = createEventDispatcher();
 
     let mapContainer;
@@ -31,8 +48,6 @@
             attribution: '&copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         });
         slippyMap.addControl(new mapboxgl.NavigationControl());
-
-        addMarker(-122.2674272, 37.8072493, 'Drexl');
     });
     
     function forwardMarkerMouseover(event) {
@@ -43,24 +58,6 @@
         dispatch('markerMouseout', event.detail);
     }
 
-    function addMarker(placeLong, placeLat, placeName) {
-        let markerElement = document.createElement('div');
-        markerElement.classList.add('slippymap-marker-container');
-        let marker = new mapboxgl.Marker({
-                element: markerElement,
-                anchor: 'bottom'
-            })
-            .setLngLat([placeLong, placeLat])
-            .addTo(slippyMap);
-        let markerComponent = new SlippyMapMarker({
-            target: markerElement,
-            props: {
-                placeName
-            }
-        });
-        markerComponent.$on('markerMouseover', forwardMarkerMouseover);
-        markerComponent.$on('markerMouseout', forwardMarkerMouseout);
-    }
 </script>
 
 <style>

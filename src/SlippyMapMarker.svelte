@@ -3,7 +3,7 @@
     import { createEventDispatcher } from 'svelte';
     import mapboxgl from 'mapbox-gl';
 
-    export let placeName;
+    export let place;
 
     const dispatch = createEventDispatcher();
     let markerDivElement;
@@ -11,14 +11,14 @@
     function dispatchMouseover() {
         dispatch('markerMouseover', {
             markerElement: markerDivElement,
-            placeName: placeName,
+            place,
         });
     }
 
     function dispatchMouseout() {
         dispatch('markerMouseout', {
             markerElement: markerDivElement,
-            placeName: placeName,
+            place,
         });
     }
 </script>
@@ -33,8 +33,10 @@
     }
 </style>
 
-<div class="slippymap-marker" bind:this={markerDivElement}
-                              on:mouseover={dispatchMouseover}
-                              on:mouseout={dispatchMouseout}>
+<div
+class="slippymap-marker"
+bind:this={markerDivElement}
+on:mouseover={dispatchMouseover}
+on:mouseout={dispatchMouseout}>
     <slot></slot>
 </div>

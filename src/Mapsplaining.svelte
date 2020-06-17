@@ -2,13 +2,16 @@
     import Icon from 'svelte-awesome';
     import {search} from 'svelte-awesome/icons';
 
-    export function setPlaceDetails(event) {
-        if (event === undefined) {
+    export function setPlaceDetails(place) {
+        if (place === null) {
             placeName = defaultPlaceName;
         } else {
-            placeName = event.detail.placeName;
+            placeName = place.placeName;
         }
     }
+
+    export let highlightedPlace;
+    export let lastPinnedPlace;
 
     const defaultPlaceName =  'Select a marker to begin';
     let placeName = defaultPlaceName;
@@ -77,13 +80,19 @@
         </div>
     </div>
     <div class="venue-details">
+    {#if lastPinnedPlace !== null}
+        <p>Pinned: {lastPinnedPlace.placeName}</p>
+    {:else if highlightedPlace !== null}
+        <p>Highlighed: {highlightedPlace.placeName}</p>
+    {:else}
         <ul>
-            <li>{placeName}</li>
+            <li>{defaultPlaceName}</li>
             <li>Neighborhood</li>
             <li>Address <span class="venue-distance">(distance)</span></li>
             <li>URL, phone</li>
             <li>Hours</li>
         </ul>
+    {/if}
     </div>
     <div class="anti-exploit">
         <h4>Why <a href="#">no Caviar/Doordash/Postmates/etc.</a> links?</h4>
