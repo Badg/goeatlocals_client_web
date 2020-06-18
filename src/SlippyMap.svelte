@@ -23,6 +23,7 @@
         });
         markerComponent.$on('markerMouseover', forwardMarkerMouseover);
         markerComponent.$on('markerMouseout', forwardMarkerMouseout);
+        markerComponent.$on('markerClick', forwardMarkerClick);
     }
 
     const dispatch = createEventDispatcher();
@@ -53,9 +54,13 @@
     function forwardMarkerMouseover(event) {
         dispatch('markerMouseover', event.detail);
     }
-    
+
     function forwardMarkerMouseout(event) {
         dispatch('markerMouseout', event.detail);
+    }
+
+    function forwardMarkerClick(event) {
+        dispatch('markerClick', event.detail);
     }
 
 </script>

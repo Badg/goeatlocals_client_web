@@ -80,10 +80,15 @@
         </div>
     </div>
     <div class="venue-details">
-    {#if lastPinnedPlace !== null}
-        <p>Pinned: {lastPinnedPlace.placeName}</p>
-    {:else if highlightedPlace !== null}
+    {#if
+        highlightedPlace !== null && (
+            lastPinnedPlace === null ||
+            lastPinnedPlace.placeOsmId != highlightedPlace.placeOsmId
+        )
+    }
         <p>Highlighed: {highlightedPlace.placeName}</p>
+    {:else if lastPinnedPlace !== null}
+        <p>Pinned: {lastPinnedPlace.placeName}</p>
     {:else}
         <ul>
             <li>{defaultPlaceName}</li>

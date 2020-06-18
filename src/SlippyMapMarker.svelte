@@ -21,6 +21,13 @@
             place,
         });
     }
+
+    function dispatchClick() {
+        dispatch('markerClick', {
+            markerElement: markerDivElement,
+            place,
+        });
+    }
 </script>
 
 <style>
@@ -37,6 +44,7 @@
 class="slippymap-marker"
 bind:this={markerDivElement}
 on:mouseover={dispatchMouseover}
-on:mouseout={dispatchMouseout}>
+on:mouseout={dispatchMouseout}
+on:click={dispatchClick}>
     <slot></slot>
 </div>
