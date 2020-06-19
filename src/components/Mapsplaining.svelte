@@ -2,19 +2,10 @@
     import Icon from 'svelte-awesome';
     import {search} from 'svelte-awesome/icons';
 
-    export function setPlaceDetails(place) {
-        if (place === null) {
-            placeName = defaultPlaceName;
-        } else {
-            placeName = place.placeName;
-        }
-    }
-
     export let highlightedPlace;
     export let lastPinnedPlace;
 
     const defaultPlaceName =  'Select a marker to begin';
-    let placeName = defaultPlaceName;
 </script>
 
 <style>
@@ -83,12 +74,12 @@
     {#if
         highlightedPlace !== null && (
             lastPinnedPlace === null ||
-            lastPinnedPlace.placeOsmId != highlightedPlace.placeOsmId
+            lastPinnedPlace.placeID != highlightedPlace.placeID
         )
     }
-        <p>Highlighed: {highlightedPlace.placeName}</p>
+        <p>Highlighed: {highlightedPlace.name}</p>
     {:else if lastPinnedPlace !== null}
-        <p>Pinned: {lastPinnedPlace.placeName}</p>
+        <p>Pinned: {lastPinnedPlace.name}</p>
     {:else}
         <ul>
             <li>{defaultPlaceName}</li>
