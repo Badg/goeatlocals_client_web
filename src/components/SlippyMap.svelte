@@ -1,35 +1,16 @@
 <script>
     import { onMount } from 'svelte';
-    import { createEventDispatcher } from 'svelte';
     import mapboxgl from 'mapbox-gl';
-
-    import SlippyMapMarker from './SlippyMapMarker.svelte';
 
     export let center = [-122.2719456, 37.804685];
     export let zoom = 16;
 
-    export function addMarker(place) {
-        let markerElement = document.createElement('div');
-        markerElement.classList.add('slippymap-marker-container');
-        let marker = new mapboxgl.Marker({
-                element: markerElement,
-                anchor: 'bottom'
-            })
-            .setLngLat([place.placeLong, place.placeLat])
-            .addTo(slippyMap);
-        let markerComponent = new SlippyMapMarker({
-            target: markerElement,
-            props: { place }
-        });
-        markerComponent.$on('markerMouseover', forwardMarkerMouseover);
-        markerComponent.$on('markerMouseout', forwardMarkerMouseout);
-        markerComponent.$on('markerClick', forwardMarkerClick);
+    export function getMapInstance() {
+        return slippyMap;
     }
-
-    const dispatch = createEventDispatcher();
-
-    let mapContainer;
+    
     let slippyMap;
+    let mapContainer;
     let drexlMarker;
     let drexlPopup;
 
@@ -50,18 +31,6 @@
         });
         slippyMap.addControl(new mapboxgl.NavigationControl());
     });
-    
-    function forwardMarkerMouseover(event) {
-        dispatch('markerMouseover', event.detail);
-    }
-
-    function forwardMarkerMouseout(event) {
-        dispatch('markerMouseout', event.detail);
-    }
-
-    function forwardMarkerClick(event) {
-        dispatch('markerClick', event.detail);
-    }
 
 </script>
 

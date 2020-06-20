@@ -2,10 +2,38 @@
     import Icon from 'svelte-awesome';
     import {search} from 'svelte-awesome/icons';
 
-    export let highlightedPlace;
-    export let lastPinnedPlace;
+    export function highlightPlace(place) {
+        highlightedPlace = place;
+    };
+
+    export function unhighlightPlace(place) {
+        highlightedPlace = null;
+    };
+
+    export function pinPlace(place) {
+        // Updating the value will trigger a DOM update, so only do this if
+        // we actually updated
+        if (
+            lastPinnedPlace === null ||
+            lastPinnedPlace.placeID !== place.placeID
+        ) {
+            lastPinnedPlace = place;
+        }
+    };
+
+    export function unpinPlace(place) {
+        if ( 
+            lastPinnedPlace !== null &&
+            lastPinnedPlace.placeID === place.placeID
+        ) {
+            lastPinnedPlace = null;
+        }
+    };
 
     const defaultPlaceName =  'Select a marker to begin';
+
+    let highlightedPlace = null;
+    let lastPinnedPlace = null;
 </script>
 
 <style>

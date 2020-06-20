@@ -6,43 +6,20 @@
     import Place from './modules/places.mjs'
 
 	// Component references
+    let slippyMap;
 	let mapsplainer;
-	let slippyMap;
 
 	// Client state
 	let highlightedPlace = null;
 	let lastPinnedPlace = null;
 	let pinnedPlaces = new Set();
 
-    function catchMarkerClick(event) {
-    	let clickedPlace = event.detail.place;
-
-    	if ( 
-    		lastPinnedPlace === null ||
-    		lastPinnedPlace.placeID != clickedPlace.placeID
-		) {
-    		lastPinnedPlace = clickedPlace;
-    		pinnedPlaces.add(clickedPlace);
-    	} else {
-    		lastPinnedPlace = null;
-    		pinnedPlaces.delete(clickedPlace);
-    	}
-
-    	highlightedPlace = event.detail.place;
-    }
-
-    function catchMarkerMouseover(event) {
-    	highlightedPlace = event.detail.place;
-    }
-
-    function catchMarkerMouseout(event) {
-    	highlightedPlace = null;
-    }
-
     onMount(() => {
         // TODO: have that place class call into child component instead of
         //       passing events up the chain
-        places.forEach(slippyMap.addMarker);
+        places.forEach(place => {
+            place.mountPlace(slippyMap, mapsplainer, pinnedPlaces);
+        });
     });
 
     // Note: the nulls here are placeID, which is our internal ID, but
@@ -114,17 +91,12 @@
 <main>
 	<div class="slippymap-container">
 		<SlippyMap
-		bind:this={slippyMap}
-		on:markerMouseover={catchMarkerMouseover}
-		on:markerMouseout={catchMarkerMouseout}
-		on:markerClick={catchMarkerClick}/>
+		bind:this={slippyMap}/>
 	</div>
 		<div class="slippymap-overlay-container">
 		<div class="mapsplaining-container">
 			<Mapsplaining
-			bind:this={mapsplainer}
-			highlightedPlace={highlightedPlace}
-			lastPinnedPlace={lastPinnedPlace}/>
+			bind:this={mapsplainer}/>
 		</div>
 		<div class="mapfilters-container">
 			<Mapfilters/>
