@@ -2,6 +2,8 @@
     import Icon from 'svelte-awesome';
     import {search} from 'svelte-awesome/icons';
 
+    export let unpinAll;
+
     export function highlightPlace(place) {
         highlightedPlace = place;
     };
@@ -37,6 +39,10 @@
 </script>
 
 <style>
+    .unpin-all {
+        pointer-events: auto;
+    }
+
     .mapsplaining {
         pointer-events: auto;
         height: 600px;
@@ -124,4 +130,7 @@
     <div class="feedback">
         <h3><a href="#">Suggestions</a> or <a href="#">corrections?</a></h3>
     </div>
+</div>
+<div class="unpin-all">
+    <button on:click={unpinAll}>Unpin all</button>
 </div>

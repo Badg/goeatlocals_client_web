@@ -2,12 +2,20 @@
 <!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="500px" height="500px" viewBox="0 0 500 500" enable-background="new 0 0 500 500" xml:space="preserve">
-<radialGradient id="SVGID_1_" cx="251.1855" cy="180.8306" r="209.7719" gradientUnits="userSpaceOnUse">
+	 width="400px" height="500px" viewBox="0 0 400 500" enable-background="new 0 0 400 500" xml:space="preserve">
+<filter  id="AI_GaussianBlur_7">
+	<feGaussianBlur  stdDeviation="7"></feGaussianBlur>
+</filter>
+<g opacity="0.5" filter="url(#AI_GaussianBlur_7)">
+	<circle fill="#641600" cx="200.097" cy="180.704" r="151.256"/>
+</g>
+<radialGradient id="SVGID_1_" cx="201.1855" cy="180.8306" r="209.7718" gradientUnits="userSpaceOnUse">
 	<stop  offset="0" style="stop-color:#641600"/>
 	<stop  offset="0.5968" style="stop-color:#921A1D"/>
 </radialGradient>
-<path fill="url(#SVGID_1_)" stroke="#280F00" stroke-width="7" stroke-miterlimit="10" d="M422.297,180.797
-	C422.297,275.956,250,491.5,250,491.5S77.703,275.956,77.703,180.797C77.703,85.64,154.842,8.5,250,8.5
-	C345.158,8.5,422.297,85.64,422.297,180.797z"/>
+<path fill="url(#SVGID_1_)" stroke="#641600" stroke-width="7" stroke-miterlimit="10" d="M200,8.5
+	c-95.158,0-172.297,77.14-172.297,172.297C27.703,275.956,200,491.5,200,491.5s172.297-215.544,172.297-310.703
+	C372.297,85.64,295.158,8.5,200,8.5z M199.637,287.718c-59.05,0-106.918-47.869-106.918-106.918
+	c0-59.049,47.868-106.917,106.918-106.917c59.049,0,106.917,47.869,106.917,106.917
+	C306.554,239.849,258.686,287.718,199.637,287.718z"/>
 </svg>

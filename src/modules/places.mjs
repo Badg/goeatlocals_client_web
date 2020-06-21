@@ -23,11 +23,14 @@ class Place {
         this.slippyMap = null;
         this.mapsplainer = null;
         this.pinCollection = null;
+        this.markerComponent = null;
 
         // These binds are important because JS class support is lame
         this.highlight = this.highlight.bind(this);
         this.unhighlight = this.unhighlight.bind(this);
         this.togglePin = this.togglePin.bind(this);
+        this.pin = this.pin.bind(this);
+        this.unpin = this.unpin.bind(this);
     }
 
     mountPlace(slippyMap, mapsplainer, pinCollection) {
@@ -44,7 +47,7 @@ class Place {
             })
             .setLngLat([this.placeLong, this.placeLat])
             .addTo(this.slippyMap.getMapInstance());
-        let markerComponent = new SlippyMapMarker({
+        this.markerComponent = new SlippyMapMarker({
             target: markerElement,
             props: { place: this }
         });
@@ -58,15 +61,25 @@ class Place {
         this.mapsplainer.unhighlightPlace(this);
     }
 
+    pin() {
+        this.mapsplainer.pinPlace(this);
+        this.markerComponent.pinMarker();
+        this.pinCollection.add(this);
+        this.pinned = true;
+    }
+
+    unpin() {
+        this.mapsplainer.unpinPlace(this);
+        this.markerComponent.unpinMarker();
+        this.pinCollection.delete(this);
+        this.pinned = false;
+    }
+
     togglePin() {
         if (this.pinned) {
-            this.mapsplainer.unpinPlace(this);
-            this.pinCollection.add(this);
-            this.pinned = false;
+            this.unpin();
         } else {
-            this.mapsplainer.pinPlace(this);
-            this.pinCollection.delete(this);
-            this.pinned = true;
+            this.pin();
         }
     }
 }
