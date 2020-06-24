@@ -8,4 +8,11 @@ module "taetime_dev-base_svelte" {
     docker_host = var.docker_host
     container_network = docker_network.project_network.name
     project_data_volume = docker_volume.project_data.name
+
+    # Add a port for sapper
+    container_ports = [{
+        internal = 7777
+        external = 7777
+        protocol = null
+    }]
 }

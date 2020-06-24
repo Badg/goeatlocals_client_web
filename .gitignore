@@ -130,3 +130,7 @@ node_modules
 _actual*.*
 _output
 /types
+/src/node_modules/@sapper/
+yarn-error.log
+/cypress/screenshots/
+/__sapper__/

@@ -1,9 +1,13 @@
+<svelte:head>
+    <title>eat locals!</title>
+</svelte:head>
+
 <script>
 	import { onMount } from 'svelte';
-	import Mapsplaining from './components/Mapsplaining.svelte';
-	import SlippyMap from './components/SlippyMap.svelte';
-	import Mapfilters from './components/Mapfilters.svelte';
-    import Place from './modules/places.mjs'
+	import Mapsplaining from '../components/Mapsplaining.svelte';
+	import SlippyMap from '../components/SlippyMap.svelte';
+	import Mapfilters from '../components/Mapfilters.svelte';
+    import Place from '../modules/places.mjs'
 
 	// Component references
     let slippyMap;
@@ -13,14 +17,6 @@
 	let highlightedPlace = null;
 	let lastPinnedPlace = null;
 	let pinnedPlaces = new Set();
-
-    onMount(() => {
-        // TODO: have that place class call into child component instead of
-        //       passing events up the chain
-        places.forEach(place => {
-            place.mountPlace(slippyMap, mapsplainer, pinnedPlaces);
-        });
-    });
 
     function unpinAllPlaces() {
         pinnedPlaces.forEach(place => { place.unpin(); });
@@ -88,26 +84,32 @@
                 hasProvisions: true
         })
     ];
+
+    onMount(() => {
+        // TODO: have that place class call into child component instead of
+        //       passing events up the chain
+        places.forEach(place => {
+            place.mountPlace(slippyMap, mapsplainer, pinnedPlaces);
+        });
+    });
     
     
 </script>
 
-<main>
-	<div class="slippymap-container">
-		<SlippyMap
-		bind:this={slippyMap}/>
+<div class="slippymap-container">
+	<SlippyMap
+	bind:this={slippyMap}/>
+</div>
+	<div class="slippymap-overlay-container">
+	<div class="mapsplaining-container">
+		<Mapsplaining
+		bind:this={mapsplainer}
+        unpinAll={unpinAllPlaces}/>
 	</div>
-		<div class="slippymap-overlay-container">
-		<div class="mapsplaining-container">
-			<Mapsplaining
-			bind:this={mapsplainer}
-            unpinAll={unpinAllPlaces}/>
-		</div>
-		<div class="mapfilters-container">
-			<Mapfilters/>
-		</div>
+	<div class="mapfilters-container">
+		<Mapfilters/>
 	</div>
-</main>
+</div>
 
 <style>
 
@@ -143,7 +145,7 @@
 		height: 100%;
 	}
 
-	main {
+	:global(main) {
 		color: rgb(254, 245, 247);
 		position: relative;
 		width: 100%;
@@ -153,7 +155,7 @@
 	}
 
 	@media (min-width: 640px) {
-		main {
+		:global(main) {
 			max-width: none;
 		}
 	}

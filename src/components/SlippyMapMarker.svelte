@@ -32,16 +32,16 @@
     }
 
     .marker-main {
-        background-image: url('/assets/img/mapMarker_main.svg');
+        background-image: url('/static/img/mapMarker_main.svg');
     }
 
     .marker-indicators {
-        background-image: url('/assets/img/mapMarker_indicators.svg');
+        background-image: url('/static/img/mapMarker_indicators.svg');
         display: none;
     }
 
     .marker-pinner {
-        background-image: url('/assets/img/mapMarker_pinner.svg');
+        background-image: url('/static/img/mapMarker_pinner.svg');
         display: none;
     }
 
@@ -54,7 +54,7 @@
     }
 
     .marker-unpinner {
-        background-image: url('/assets/img/mapMarker_unpinner.svg');
+        background-image: url('/static/img/mapMarker_unpinner.svg');
         display: none;
     }
 
