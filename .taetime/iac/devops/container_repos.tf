@@ -22,15 +22,6 @@ provider "aws" {
 data "aws_caller_identity" "current" {}
 
 
-resource "aws_ecr_repository" "goeatlocals_client_web-mod_tile" {
-    name = "goeatlocals_client_web/mod_tile"
-
-    tags = {
-        Name  = "Eat Locals: web client: mod tile"
-    }
-}
-
-
 resource "aws_ecr_repository" "goeatlocals_client_web-tileserver_trex" {
     name = "goeatlocals_client_web/tileserver_trex"
 

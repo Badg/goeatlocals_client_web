@@ -33,3 +33,10 @@ resource "docker_network" "project_network" {
 resource "docker_volume" "project_data" {
     name = "${var.project_name}-data"
 }
+
+locals {
+    aws_control_acct_id = data.aws_caller_identity.control_plane.account_id
+    container_name = "mod_tile"
+    project_data_volume = docker_volume.project_data.name
+    container_network = docker_network.project_network.name
+}
