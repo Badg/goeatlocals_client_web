@@ -7,12 +7,15 @@
 
     export function getMapInstance() {
         return slippyMap;
-    }
+    };
+
+    export function addMapBoundsListener(callback) {
+        boundsListeners.push(callback);
+    };
     
     let slippyMap;
     let mapContainer;
-    let drexlMarker;
-    let drexlPopup;
+    let boundsListeners = [];
 
     onMount(() => {
         slippyMap = new mapboxgl.Map({
@@ -30,7 +33,22 @@
             attribution: '&copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         });
         slippyMap.addControl(new mapboxgl.NavigationControl());
+        slippyMap.on('load', initSlippyMap);
     });
+
+    function initSlippyMap() {
+        slippyMap.on('moveend', notifyBoundsListeners);
+        slippyMap.on('resize', notifyBoundsListeners);
+        slippyMap.on('zoomend', notifyBoundsListeners);
+    }
+
+    function notifyBoundsListeners() {
+        let bounds = slippyMap.getBounds();
+        boundsListeners.forEach(listener => {
+            listener(bounds);
+        });
+        console.log(`new bounds: ${bounds}`)
+    }
 
 </script>
 

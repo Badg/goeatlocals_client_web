@@ -71,6 +71,7 @@
     onMount(() => {
         let initialBounds = slippyMap.getMapInstance().getBounds();
         getPlacesForBounds(initialBounds);
+        slippyMap.addMapBoundsListener(getPlacesForBounds);
     });
 
     
