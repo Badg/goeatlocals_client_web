@@ -1,16 +1,3 @@
-<script>
-    export let place;
-    export function pinMarker() {
-        isPinned = true;
-    }
-
-    export function unpinMarker() {
-        isPinned = false;
-    }
-
-    let isPinned = false;
-</script>
-
 <style>
     .slippymap-marker{
         position: relative;
@@ -67,11 +54,44 @@
     }
 </style>
 
+<script>
+    import { onMount, onDestroy } from 'svelte';
+
+    import TouchHoverState from '../modules/touchHoverState.mjs';
+
+
+    export let place;
+    export function pinMarker() {
+        isPinned = true;
+    }
+
+    export function unpinMarker() {
+        isPinned = false;
+    }
+
+    export function clearHoverState() {
+        touchState.clearState();
+    };
+
+    let touchState = new TouchHoverState();
+    let isPinned = false;
+
+    onDestroy(touchState.clearState);
+    onMount(() => {
+        touchState.setOverCallback(place.highlight);
+        touchState.setOutCallback(place.unhighlight);
+        touchState.setClickCallback(place.togglePin);
+    });
+</script>
+
 <div
 class="slippymap-marker"
-on:mouseover={place.highlight}
-on:mouseout={place.unhighlight}
-on:click={place.togglePin}>
+on:mouseover={touchState.addHitEvent}
+on:mouseout={touchState.addHitEvent}
+on:click={touchState.addHitEvent}
+on:touchstart={touchState.addHitEvent}
+on:touchmove={touchState.addHitEvent}
+on:touchend={touchState.addHitEvent}
     <div class="marker-pinner {isPinned ? 'pinned' : 'unpinned'}"></div>
     <div class="marker-unpinner {isPinned ? 'pinned' : 'unpinned'}"></div>
     <div class="marker-indicators"></div>

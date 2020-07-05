@@ -67,11 +67,15 @@ class Place {
     }
 
     highlight() {
-        this.mapsplainer.highlightPlace(this);
+        let overriddenHighlightedPlace = this.mapsplainer.highlightPlace(this);
+        if (overriddenHighlightedPlace !== null) {
+            overriddenHighlightedPlace.markerComponent.clearHoverState();
+        }
     }
 
     unhighlight() {
-        this.mapsplainer.unhighlightPlace(this);
+        this.mapsplainer.unhighlightPlace();
+        this.markerComponent.clearHoverState();
     }
 
     pin() {

@@ -5,10 +5,12 @@
     export let unpinAll;
 
     export function highlightPlace(place) {
+        let overriddenHighlightedPlace = highlightedPlace;
         highlightedPlace = place;
+        return overriddenHighlightedPlace;
     };
 
-    export function unhighlightPlace(place) {
+    export function unhighlightPlace() {
         highlightedPlace = null;
     };
 
@@ -20,6 +22,19 @@
             lastPinnedPlace.placeID !== place.placeID
         ) {
             lastPinnedPlace = place;
+
+            // With touch events, sometimes the place we just pinned wasn't the
+            // same as the one we have highlighted. In that case, we want to go
+            // ahead and reset the highlight on the other place.
+            if (
+                highlightedPlace !== null &&
+                place.placeID !== highlightedPlace.placeID
+            ) {
+                // Note that this will chain-call into unhighlightPlace() above
+                // so we don't need to call it directly. This is admittedly a
+                // bit gross
+                highlightedPlace.unhighlight();
+            }
         }
     };
 

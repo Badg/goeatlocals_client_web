@@ -6,7 +6,7 @@
     import LRU from 'lru-cache';
 	import { onMount } from 'svelte';
 
-    import Place from '../modules/places.mjs'
+    import Place from '../modules/places.mjs';
 
 	import Mapsplaining from '../components/Mapsplaining.svelte';
 	import SlippyMap from '../components/SlippyMap.svelte';
