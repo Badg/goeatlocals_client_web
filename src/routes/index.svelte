@@ -81,7 +81,7 @@
 	<SlippyMap
 	bind:this={slippyMap}/>
 </div>
-	<div class="slippymap-overlay-container">
+<div class="slippymap-overlay-container">
 	<div class="mapsplaining-container">
 		<Mapsplaining
 		bind:this={mapsplainer}
@@ -103,21 +103,18 @@
 		z-index: 7777;
         height: 100%;
         width: 100%;
-		padding: 10px;
 	}
 
 	.mapsplaining-container {
-		vertical-align: top;
-		position: relative;
-		display: inline-block;
-		margin: 50px;
+		position: absolute;
+        top: 0;
+        left: 0;
 	}
 
 	.mapfilters-container {
-		vertical-align: top;
-		position: relative;
-		display: inline-block;
-		margin: 50px;
+        position: absolute;
+        top: 0;
+        right: 0;
 	}
 
 	.slippymap-container {

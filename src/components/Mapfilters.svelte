@@ -1,6 +1,3 @@
-<script>
-</script>
-
 <style>
     .mapfilters-flex {
         display: flex;
@@ -10,7 +7,7 @@
 /*        background-color: rgb(40, 15, 0);
         color: rgb(254, 245, 247);*/
         box-shadow: 7px 7px 15px 5px rgba(0, 0, 0, 0.3);
-        border-radius: 10px;
+        border-radius: 0 0 0 10px;
         padding: 5px;
         pointer-events: auto;
     }
@@ -32,6 +29,9 @@
         color: rgb(147, 9, 0);
     }
 </style>
+
+<script>
+</script>
 
 <div class="mapfilters-flex">
     <div class="label">Filters:</div>

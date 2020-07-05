@@ -12,6 +12,11 @@
     export function addMapBoundsListener(callback) {
         boundsListeners.push(callback);
     };
+
+    const attribution =
+        '&copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> ' +
+        '&copy; <a href="https://www.openstreetmap.org/copyright">' +
+        'OpenStreetMap</a> contributors';
     
     let slippyMap;
     let mapContainer;
@@ -30,9 +35,9 @@
                 }
             },
             hash: 'mapPosition',
-            attribution: '&copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            attribution,
         });
-        slippyMap.addControl(new mapboxgl.NavigationControl());
+        slippyMap.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
         slippyMap.on('load', initSlippyMap);
     });
 
