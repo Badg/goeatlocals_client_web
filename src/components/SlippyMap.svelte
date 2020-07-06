@@ -52,7 +52,6 @@
         boundsListeners.forEach(listener => {
             listener(bounds);
         });
-        console.log(`new bounds: ${bounds}`)
     }
 
 </script>

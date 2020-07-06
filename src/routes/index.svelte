@@ -3,10 +3,10 @@
 </svelte:head>
 
 <script>
-    import LRU from 'lru-cache';
 	import { onMount } from 'svelte';
 
-    import Place from '../modules/places.mjs';
+    import { Place, getPlacesForBounds } from '../modules/places.mjs';
+    import { placesCache } from '../modules/stores.mjs';
 
 	import Mapsplaining from '../components/Mapsplaining.svelte';
 	import SlippyMap from '../components/SlippyMap.svelte';
@@ -22,59 +22,37 @@
 	let highlightedPlace = null;
 	let lastPinnedPlace = null;
 	let pinnedPlaces = new Set();
-    let placesCache = new LRU({
-        max: 250,
-        dispose: (placeID, placeObject) => { placeObject.unmountPlace(); },
-    });
 
-    async function getPlacesForBounds(bounds){
-        let east = bounds.getEast();
-        let south = bounds.getSouth();
-        let north = bounds.getNorth();
-        let west = bounds.getWest();
-
-        let response = await fetch(placesEndpoint);
-        let responseData = await response.json();
-        let newPlaces = new Set();
-
-        responseData.forEach(placeJson => {
-            let thisPlaceID = placeJson.placeID;
-
-            if (placesCache.has(thisPlaceID)) {
-                // This is purely a prod to update the cache position
-                placesCache.get(thisPlaceID);
-            } else {
-                let thisPlace =  new Place(
-                    placeJson.name,
-                    placeJson.placeID,
-                    placeJson.placeLong,
-                    placeJson.placeLat,
-                    placeJson.placeDetails
-                );
-
-                placesCache.set(thisPlaceID, thisPlace);
-                thisPlace.mountPlace(slippyMap, mapsplainer, pinnedPlaces);
-                newPlaces.add(thisPlace);
-            }
-        });
-    }
 
     function unpinAllPlaces() {
         pinnedPlaces.forEach(placeID => {
-            let place = placesCache.get(placeID);
+            let place = placesCache.getPlace(placeID);
             if (place !== undefined) {
                 place.unpin();
             }
         });
     }
 
+
+    async function inboundsPlacesUpdater(bounds) {
+        let newPlaces = await getPlacesForBounds({
+            north: bounds.getNorth(),
+            east: bounds.getEast(),
+            south: bounds.getSouth(),
+            west: bounds.getWest(),
+        });
+
+        newPlaces.forEach(newPlace => { 
+            newPlace.mountPlace(slippyMap, mapsplainer, pinnedPlaces);
+        });
+    }
+
+
     onMount(() => {
         let initialBounds = slippyMap.getMapInstance().getBounds();
-        getPlacesForBounds(initialBounds);
-        slippyMap.addMapBoundsListener(getPlacesForBounds);
+        inboundsPlacesUpdater(initialBounds);
+        slippyMap.addMapBoundsListener(inboundsPlacesUpdater);
     });
-
-    
 </script>
 
 <div class="slippymap-container">

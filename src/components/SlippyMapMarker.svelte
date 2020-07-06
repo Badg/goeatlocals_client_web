@@ -92,6 +92,7 @@ on:click={touchState.addHitEvent}
 on:touchstart={touchState.addHitEvent}
 on:touchmove={touchState.addHitEvent}
 on:touchend={touchState.addHitEvent}
+on:dblclick|stopPropagation={place.gotoDetailPage}>
     <div class="marker-pinner {isPinned ? 'pinned' : 'unpinned'}"></div>
     <div class="marker-unpinner {isPinned ? 'pinned' : 'unpinned'}"></div>
     <div class="marker-indicators"></div>

@@ -1,9 +1,17 @@
 import mapboxgl from 'mapbox-gl';
+import { goto } from '@sapper/app';
 
 import SlippyMapMarker from '../components/SlippyMapMarker.svelte';
+import { placesCache } from './stores.mjs'
 
 
-const detailPageRoute = '/places'
+// TODO: do I want something that formats these based on parameters instead of
+// needing to format them in the fetch call? Probably. That would be another
+// good API glue class. OOOO, you could even define it identically to the
+// backend (ex "/api/places/<placeID>")
+const pageRoutePlaceDetail = '/places';
+const apiRoutePlacesAll = '/api/places';
+const apiRoutePlaceDetail = '/api/places';
 
 
 class Place {
@@ -33,6 +41,7 @@ class Place {
         this.pin = this.pin.bind(this);
         this.unpin = this.unpin.bind(this);
         this.unmountPlace = this.unmountPlace.bind(this);
+        this.gotoDetailPage = this.gotoDetailPage.bind(this);
     }
 
     mountPlace(slippyMap, mapsplainer, pinCollection) {
@@ -99,8 +108,61 @@ class Place {
             this.pin();
         }
     }
+
+    async gotoDetailPage() {
+        await goto(`${pageRoutePlaceDetail}/${this.placeID}`);
+    }
+}
+
+
+async function getPlacesForBounds({north, south, east, west}){
+    let response = await fetch(apiRoutePlacesAll);
+    let responseData = await response.json();
+    let newPlaces = new Set();
+
+    responseData.forEach(placeJson => {
+        let thisPlaceID = placeJson.placeID;
+
+        if (placesCache.containsPlace(thisPlaceID)) {
+            placesCache.touchPlace(thisPlaceID);
+        } else {
+            let thisPlace =  new Place(
+                placeJson.name,
+                placeJson.placeID,
+                placeJson.placeLong,
+                placeJson.placeLat,
+                placeJson.placeDetails
+            );
+            newPlaces.add(thisPlace);
+        }
+    });
+
+    if (newPlaces.size > 0) {
+        placesCache.cachePlacesBatch(newPlaces);
+    }
+
+    return newPlaces;
+}
+
+
+// TODO: this is sloppy/boilerplatey. I really want two different glue classes
+// here: apiSuccessResponse and apiFailureResponse (or maybe also a third for
+// partial successes)
+async function getPlaceDetails(placeID) {
+    const response = await fetch(`${apiRoutePlaceDetail}/${placeID}`);
+    const placeOrErrorData = await response.json();
+
+    if (response.status === 200) {
+        return { error: false, placeData: placeOrErrorData };
+    } else {
+        return {
+            error: true,
+            statusHint: clientStatusHint,
+            errorMessage: clientErrorMessage,
+        };
+    }
 }
 
 
 export default Place;
-export { Place };
+export { Place, getPlacesForBounds, getPlaceDetails };
