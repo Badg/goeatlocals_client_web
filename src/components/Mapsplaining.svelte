@@ -7,10 +7,8 @@
         pointer-events: auto;
         height: 600px;
         width: 300px;
-        background-color: rgb(254, 245, 247);
-        color: rgb(40, 15, 0);
-/*        background-color: rgb(40, 15, 0);
-        color: rgb(254, 245, 247);*/
+        background-color: var(--color-neutral-lightest);
+        color: var(--color-neutral-darkest);
         padding: 15px;
         border-radius: 0 0 10px 0;
         box-shadow: 7px 7px 15px 5px rgba(0, 0, 0, 0.3);
@@ -19,12 +17,8 @@
         justify-content: space-between;
     }
 
-/*    .branding {
-        display: block;
-    }
-*/
     .branding h1 {
-        color: rgb(146, 26, 29);
+        color: var(--color-red-dark);
         font-size: 3em;
         font-weight: 100;
         margin-top: 0;
@@ -48,7 +42,6 @@
     }
 
     h2 {
-        color: rgb(100, 22, 0);
         font-weight: 400;
     }
 

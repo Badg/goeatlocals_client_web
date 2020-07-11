@@ -102,7 +102,6 @@
 	}
 
 	:global(main) {
-		color: rgb(254, 245, 247);
 		position: relative;
 		width: 100%;
 		height: 100%;

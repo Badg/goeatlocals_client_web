@@ -2,10 +2,8 @@
     .mapfilters-flex {
         display: flex;
         align-items: center;
-        background-color: rgba(254, 245, 247);
-        color: rgb(40, 15, 0);
-/*        background-color: rgb(40, 15, 0);
-        color: rgb(254, 245, 247);*/
+        background-color: var(--color-neutral-lightest);
+        color: var(--color-neutral-darkest);
         box-shadow: 7px 7px 15px 5px rgba(0, 0, 0, 0.3);
         border-radius: 0 0 0 10px;
         padding: 5px;
@@ -26,7 +24,7 @@
     }
 
     .label {
-        color: rgb(147, 9, 0);
+        color: var(--color-red-dark);
     }
 </style>
 
