@@ -15,13 +15,14 @@ const apiRoutePlaceDetail = '/api/places';
 
 
 class Place {
-    constructor(name, placeID, placeLong, placeLat, info) {
+    constructor(name, placeID, placeLong, placeLat, placePrimaryType, info) {
         // These are all from the constructor signature
         this.name = name;
         // Note: currently ignoring placeID and generating it randomly here
         this.placeID = placeID;
         this.placeLong = placeLong;
         this.placeLat = placeLat;
+        this.placePrimaryType = placePrimaryType;
         this.info = info;
 
         // These are internals
@@ -131,6 +132,7 @@ async function getPlacesForBounds({north, south, east, west}){
                 placeJson.placeID,
                 placeJson.placeLong,
                 placeJson.placeLat,
+                placeJson.placePrimaryType,
                 placeJson.placeDetails
             );
             newPlaces.add(thisPlace);
