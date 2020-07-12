@@ -82,12 +82,14 @@ on:dblclick|stopPropagation={place.gotoDetailPage}>
 <!-- Insert the map marker SVG into the head so we can reference and style it -->
 <svelte:head>
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="350px"
-     height="460px" viewBox="0 0 350 460" enable-background="new 0 0 350 460" xml:space="preserve">
-<filter id="GaussianBlur_10"><feGaussianBlur stdDeviation="10"></feGaussianBlur></filter>
+     height="460px" viewBox="0 0 350 460" enable-background="new 0 0 350 460" xml:space="preserve" style="display: none;">
 <symbol id="mapmarker" viewBox="0 0 350 460">
+    <filter id="GaussianBlur_10">
+        <feGaussianBlur stdDeviation="10"></feGaussianBlur>
+    </filter>
     <g id="marker-pin">
-        <g opacity="0.5" filter="url(#GaussianBlur_10)">
-            <ellipse fill="#161A0D" style="fill: var(--color-neutral-darkest, #161A0D);" cx="175" cy="422.713" rx="175" ry="35.987"/>
+        <g opacity="0.25" filter="url(#GaussianBlur_10)">
+            <ellipse fill="#161A0D" style="fill: var(--color-neutral-darkest, #161A0D);" cx="175" cy="425" rx="150" ry="35"/>
         </g>
         
         <radialGradient id="marker-pin-gradient" cx="175" cy="160" r="150" fx="175" fy="160" gradientUnits="userSpaceOnUse">
