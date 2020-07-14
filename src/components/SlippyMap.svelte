@@ -28,7 +28,7 @@
             center: center,
             zoom: zoom,
             zoomControl: false,
-            style: '/maps/maptiler-basic/style.json',
+            style: '/api/maps/styles/eatlocals_light.json',
             transformRequest: (url, resourceType) => {
                 return {
                     url: `${window.location.origin}${url}`
