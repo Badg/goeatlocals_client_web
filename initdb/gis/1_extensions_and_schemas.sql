@@ -1,0 +1,10 @@
+CREATE EXTENSION postgis;
+CREATE EXTENSION hstore;
+CREATE EXTENSION unaccent;
+ALTER TABLE spatial_ref_sys OWNER TO osm_admin;
+
+CREATE SCHEMA IF NOT EXISTS mapdata_staging;
+CREATE SCHEMA IF NOT EXISTS mapdata_prod;
+CREATE SCHEMA IF NOT EXISTS mapdata_backup;
+CREATE SCHEMA IF NOT EXISTS mapdata_utils;
+CREATE SCHEMA IF NOT EXISTS mapdata_layers;
