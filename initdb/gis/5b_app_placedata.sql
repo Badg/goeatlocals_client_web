@@ -4,6 +4,15 @@ CREATE TABLE IF NOT EXISTS app_placedata.places(
         PRIMARY KEY
         NOT NULL
         DEFAULT gen_random_uuid(),
+    -- Don't FK reference here for three reasons: first, I have no fucking clue
+    -- how that would interact with the schema rotation (probably not well!);
+    -- second, we want to preserve the entry even if it's removed from the
+    -- OSM data (which we could do with an on delete set null, but this is
+    -- easier, and this is mostly a "nice to have" things anyways; third,
+    -- because we would need to reference both osm_poi_polygon AND
+    -- osm_poi_point, and that's more complexity than I'd like to deal with
+    osm_id                          bigint
+        UNIQUE,
 
     identity_name                   text
         NOT NULL,
@@ -19,6 +28,9 @@ CREATE TABLE IF NOT EXISTS app_placedata.places(
     locator_address                 app_placedata.address,
     locator_website                 text,
     locator_phone                   text);
+CREATE INDEX ON app_placedata.places (osm_id);
+CREATE INDEX ON app_placedata.places (lower(identity_name));
+CREATE INDEX ON app_placedata.places USING GIST (locator_point);
 
 
 CREATE TABLE IF NOT EXISTS app_placedata.attrs_temporal(
