@@ -117,7 +117,10 @@ class Place {
 
 
 async function getPlacesForBounds({north, south, east, west}){
-    let response = await fetch(apiRoutePlacesAll);
+    let response = await fetch(
+        apiRoutePlacesAll +
+        `?north=${north}&east=${east}&south=${south}&west=${west}`
+    );
     let responseData = await response.json();
     let newPlaces = new Set();
 
