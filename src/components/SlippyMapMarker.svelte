@@ -20,11 +20,11 @@
         --color-marker-outer: var(--color-neutral-dark);
     }
 
-    .place-primary-type-beerwine {
+    .place-primary-type-light_bar {
         --place-is-beerwine: inline;
     }
 
-    .place-primary-type-liquor {
+    .place-primary-type-full_bar {
         --place-is-liquor: inline;
     }
 
@@ -32,7 +32,7 @@
         --place-is-grocery: inline;
     }
 
-    .place-primary-type-restaurant {
+    .place-primary-type-prepared_food {
         --place-is-restaurant: inline;
     }
 </style>

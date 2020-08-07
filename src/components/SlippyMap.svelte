@@ -34,7 +34,13 @@
                     url: `${window.location.origin}${url}`
                 }
             },
-            hash: 'mapPosition',
+            // currently can't do this; it washes away the route for the map.
+            // I don't know why; I'm 85% confident it's a bug in either sapper,
+            // mapbox-gl.js, or the interplay between the two of them, but I
+            // don't have time to try and troubleshoot it. so for now,
+            // unfortunately, we can't preserve the hash like this free out of
+            // the box. See https://github.com/mapbox/mapbox-gl-js/issues/9917
+            // hash: 'mapPosition',
             attribution,
         });
         slippyMap.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
