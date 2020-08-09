@@ -48,9 +48,9 @@
     }
 
 
-    onMount(() => {
+    onMount(async () => {
         let initialBounds = slippyMap.getMapInstance().getBounds();
-        inboundsPlacesUpdater(initialBounds);
+        await inboundsPlacesUpdater(initialBounds);
         slippyMap.addMapBoundsListener(inboundsPlacesUpdater);
     });
 </script>

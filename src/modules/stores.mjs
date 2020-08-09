@@ -1,7 +1,7 @@
 import LRU from 'lru-cache';
 import { writable } from 'svelte/store';
 
-const maxCachedPlaces = 250;
+const maxCachedPlaces = 2500;
 
 
 function createPlacesCache() {
