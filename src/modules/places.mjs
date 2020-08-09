@@ -12,6 +12,7 @@ import { placesCache } from './stores.mjs'
 const pageRoutePlaceDetail = '/places';
 const apiRoutePlacesAll = '/api/places';
 const apiRoutePlaceDetail = '/api/places';
+const apiRoutePlaceCitiesAll = '/api/places/cities'
 
 
 class Place {
@@ -149,6 +150,39 @@ async function getPlacesForBounds({north, south, east, west}){
 }
 
 
+async function getCitiesWithPlaces(){
+    let response = await fetch(apiRoutePlaceCitiesAll);
+    return (await response.json());
+}
+
+
+async function getPlacesForCity(city){
+    let response = await fetch(
+        apiRoutePlacesAll +
+        `?city=${city}`
+    );
+    let responseData = await response.json();
+    let newPlaces = [];
+
+    responseData.forEach(placeJson => {
+        let thisPlaceID = placeJson.placeID;
+
+        if (placesCache.containsPlace(thisPlaceID)) {
+            placesCache.touchPlace(thisPlaceID);
+        } else {
+            let thisPlace =  Place.fromApiResponse(placeJson);
+            newPlaces.push(thisPlace);
+        }
+    });
+
+    if (newPlaces.length > 0) {
+        placesCache.cachePlacesBatch(newPlaces);
+    }
+
+    return newPlaces;
+}
+
+
 // TODO: this is sloppy/boilerplatey. I really want two different glue classes
 // here: apiSuccessResponse and apiFailureResponse (or maybe also a third for
 // partial successes)
@@ -173,4 +207,4 @@ async function getPlaceDetails(placeID) {
 
 
 export default Place;
-export { Place, getPlacesForBounds, getPlaceDetails };
+export { Place, getPlacesForBounds, getPlaceDetails, getPlacesForCity };
