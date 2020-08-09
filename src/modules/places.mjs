@@ -15,14 +15,11 @@ const apiRoutePlaceDetail = '/api/places';
 
 
 class Place {
-    constructor(name, placeID, placeLong, placeLat, placePrimaryType, info) {
+    constructor(placeID, name, status, info) {
         // These are all from the constructor signature
-        this.name = name;
-        // Note: currently ignoring placeID and generating it randomly here
         this.placeID = placeID;
-        this.placeLong = placeLong;
-        this.placeLat = placeLat;
-        this.placePrimaryType = placePrimaryType;
+        this.name = name;
+        this.status = status;
         this.info = info;
 
         // These are internals
@@ -45,6 +42,15 @@ class Place {
         this.gotoDetailPage = this.gotoDetailPage.bind(this);
     }
 
+    static fromApiResponse(jsonObj) {
+        return new this(
+            jsonObj.placeID,
+            jsonObj.name,
+            jsonObj.status,
+            jsonObj.info
+        );
+    }
+
     mountPlace(slippyMap, mapsplainer, pinCollection) {
         this.slippyMap = slippyMap;
         this.mapsplainer = mapsplainer;
@@ -57,7 +63,7 @@ class Place {
                 element: markerElement,
                 anchor: 'bottom'
             })
-            .setLngLat([this.placeLong, this.placeLat])
+            .setLngLat([this.info.locators.lon, this.info.locators.lat])
             .addTo(this.slippyMap.getMapInstance());
         this.markerComponent = new SlippyMapMarker({
             target: markerElement,
@@ -130,14 +136,7 @@ async function getPlacesForBounds({north, south, east, west}){
         if (placesCache.containsPlace(thisPlaceID)) {
             placesCache.touchPlace(thisPlaceID);
         } else {
-            let thisPlace =  new Place(
-                placeJson.name,
-                placeJson.placeID,
-                placeJson.placeLong,
-                placeJson.placeLat,
-                placeJson.placePrimaryType,
-                placeJson.placeDetails
-            );
+            let thisPlace =  Place.fromApiResponse(placeJson);
             newPlaces.add(thisPlace);
         }
     });
@@ -158,7 +157,11 @@ async function getPlaceDetails(placeID) {
     const placeOrErrorData = await response.json();
 
     if (response.status === 200) {
-        return { error: false, placeData: placeOrErrorData };
+        // TODO: update place cache with details
+        return {
+            error: false,
+            place: Place.fromApiResponse(placeOrErrorData)
+        };
     } else {
         return {
             error: true,

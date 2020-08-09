@@ -68,7 +68,11 @@
 </script>
 
 <svg
-class="place-marker {isPinned ? 'pinned' : 'unpinned'} place-primary-type-{place.placePrimaryType ? place.placePrimaryType : 'unknown'}"
+class="place-marker {isPinned ? 'pinned' : 'unpinned'}
+        place-primary-type-{
+            place.info.identity.displayClass ?
+            place.info.identity.displayClass :
+            'unknown'}"
 on:mouseover={touchState.addHitEvent}
 on:mouseout={touchState.addHitEvent}
 on:click={touchState.addHitEvent}
