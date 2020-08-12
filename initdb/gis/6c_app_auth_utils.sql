@@ -24,6 +24,9 @@ BEGIN
     SET last_validated = current_timestamp
     WHERE session_id = validate_session_id AND user_id = validate_user_id;
 
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'Invalid session!';
+
     RETURN FOUND;
 END
 $$ LANGUAGE plpgsql
