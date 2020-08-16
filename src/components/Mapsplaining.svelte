@@ -18,7 +18,7 @@
     }
 
     .branding h1 {
-        color: var(--color-red-dark);
+        color: var(--color-red-medium);
         font-size: 3em;
         font-weight: 100;
         margin-top: 0;

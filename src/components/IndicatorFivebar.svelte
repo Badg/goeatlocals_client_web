@@ -153,25 +153,25 @@
      width="700px" height="500px" viewBox="0 0 700 500" enable-background="new 0 0 700 500" xml:space="preserve" style="display: none;">
 <symbol id="indicator-fivebar" viewBox="0 0 700 500">
     <g id="indicators-bars" style="display: var(--indicators-bars, inline);">
-        <path id="bar5" style="fill: var(--indicator-fivebar-5, #7E8079); stroke: var(--color-neutral-mediumest, #161A0D);" fill="#7E8079" stroke="#161A0D" stroke-width="7" stroke-miterlimit="10" d="M599.5,49.5
+        <path id="bar5" style="fill: var(--indicator-fivebar-5, #7E8079); stroke: var(--color-neutral-medium, #161A0D);" fill="#7E8079" stroke="#161A0D" stroke-width="7" stroke-miterlimit="10" d="M599.5,49.5
             c0-27.338,22.386-49.5,50-49.5s50,22.162,50,49.5v401c0,27.338-22.386,49.5-50,49.5s-50-22.162-50-49.5V49.5z"/>
-        <path id="bar4" style="fill: var(--indicator-fivebar-4, #7E8079); stroke: var(--color-neutral-mediumest, #161A0D);"  fill="#7E8079" stroke="#161A0D" stroke-width="7" stroke-miterlimit="10" d="M449.5,49.5
+        <path id="bar4" style="fill: var(--indicator-fivebar-4, #7E8079); stroke: var(--color-neutral-medium, #161A0D);"  fill="#7E8079" stroke="#161A0D" stroke-width="7" stroke-miterlimit="10" d="M449.5,49.5
             c0-27.338,22.386-49.5,50-49.5s50,22.162,50,49.5v401c0,27.338-22.386,49.5-50,49.5s-50-22.162-50-49.5V49.5z"/>
-        <path id="bar3" style="fill: var(--indicator-fivebar-3, #BF3600); stroke: var(--color-neutral-mediumest, #161A0D);" fill="#BF3600" stroke="#161A0D" stroke-width="7" stroke-miterlimit="10" d="M299.5,49.5
+        <path id="bar3" style="fill: var(--indicator-fivebar-3, #BF3600); stroke: var(--color-neutral-medium, #161A0D);" fill="#BF3600" stroke="#161A0D" stroke-width="7" stroke-miterlimit="10" d="M299.5,49.5
             c0-27.338,22.386-49.5,50-49.5s50,22.162,50,49.5v401c0,27.338-22.386,49.5-50,49.5s-50-22.162-50-49.5V49.5z"/>
-        <path id="bar2" style="fill: var(--indicator-fivebar-2, #BF3600); stroke: var(--color-neutral-mediumest, #161A0D);" fill="#BF3600" stroke="#161A0D" stroke-width="7" stroke-miterlimit="10" d="M149.5,49.5
+        <path id="bar2" style="fill: var(--indicator-fivebar-2, #BF3600); stroke: var(--color-neutral-medium, #161A0D);" fill="#BF3600" stroke="#161A0D" stroke-width="7" stroke-miterlimit="10" d="M149.5,49.5
             c0-27.338,22.386-49.5,50-49.5s50,22.162,50,49.5v401c0,27.338-22.386,49.5-50,49.5s-50-22.162-50-49.5V49.5z"/>
-        <path id="bar1" style="fill: var(--indicator-fivebar-1, #BF3600); stroke: var(--color-neutral-mediumest, #161A0D);" fill="#BF3600" stroke="#161A0D" stroke-width="7" stroke-miterlimit="10" d="M-0.5,49.5
+        <path id="bar1" style="fill: var(--indicator-fivebar-1, #BF3600); stroke: var(--color-neutral-medium, #161A0D);" fill="#BF3600" stroke="#161A0D" stroke-width="7" stroke-miterlimit="10" d="M-0.5,49.5
             C-0.5,22.162,21.886,0,49.5,0s50,22.162,50,49.5v401c0,27.338-22.386,49.5-50,49.5s-50-22.162-50-49.5V49.5z"/>
     </g>
     <g id="indicators-negatory" display="none" style="display: var(--indicators-negatory, none);">
-        <path id="indicator-negatory" style="fill: var(--indicator-negatory-fill, #D7D9D4); stroke: var(--color-neutral-mediumest, #161A0D);" display="inline" fill="#D7D9D4" stroke="#161A0D" stroke-width="7" stroke-miterlimit="10" d="M350,0
+        <path id="indicator-negatory" style="fill: var(--indicator-negatory-fill, #D7D9D4); stroke: var(--color-neutral-medium, #161A0D);" display="inline" fill="#D7D9D4" stroke="#161A0D" stroke-width="7" stroke-miterlimit="10" d="M350,0
             C211.929,0,100,111.928,100,250c0,138.07,111.929,250,250,250c138.07,0,250-111.93,250-250C600,111.929,488.071,0,350,0z
              M481.157,118.843c65.976,65.976,70.564,166.814,20.844,237.536L243.619,98C314.389,48.246,415.218,52.904,481.157,118.843z
              M218.843,381.157c-65.976-65.976-70.564-166.815-20.844-237.537L456.381,402C385.612,451.754,284.782,447.097,218.843,381.157z"/>
     </g>
     <g id="indicators-unknown" display="none" style="display: var(--indicators-unknown, none);">
-        <path id="indicator-unknown" style="fill: var(--indicator-unknown-fill, #D7D9D4); stroke: var(--color-neutral-mediumest, #161A0D);" display="inline" fill="#D7D9D4" stroke="#161A0D" stroke-width="7" stroke-miterlimit="10" d="M350.21,0
+        <path id="indicator-unknown" style="fill: var(--indicator-unknown-fill, #D7D9D4); stroke: var(--color-neutral-medium, #161A0D);" display="inline" fill="#D7D9D4" stroke="#161A0D" stroke-width="7" stroke-miterlimit="10" d="M350.21,0
             c-77.948,0-128.436,31.937-168.073,88.893c-7.19,10.332-4.974,24.498,5.057,32.104l42.127,31.942
             c10.13,7.681,24.543,5.885,32.474-4.051c24.462-30.646,42.607-48.29,80.817-48.29c30.043,0,67.203,19.335,67.203,48.468
             c0,22.023-18.181,33.334-47.845,49.965c-34.593,19.395-80.37,43.531-80.37,103.912v9.559c0,12.943,10.493,23.438,23.438,23.438

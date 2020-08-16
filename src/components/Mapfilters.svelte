@@ -24,7 +24,7 @@
     }
 
     .label {
-        color: var(--color-red-dark);
+        color: var(--color-red-medium);
     }
 </style>
 

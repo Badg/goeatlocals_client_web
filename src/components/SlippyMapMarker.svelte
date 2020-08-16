@@ -11,8 +11,8 @@
     }
 
     .place-marker.pinned {
-        --color-marker-inner: var(--color-red-light);
-        --color-marker-outer: var(--color-red-dark);
+        --color-marker-inner: var(--color-red-medium);
+        --color-marker-outer: var(--color-neutral-medium);
     }
 
     .place-marker.unpinned {

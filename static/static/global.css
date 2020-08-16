@@ -1,62 +1,67 @@
 :root {
-	--color-blue-light: hsla(203, 100%, 88%, 1);
-	--color-blue-dark: hsla(203, 100%, 25%, 1);
-	--color-red-light: hsla(16, 100%, 50%, 1);
-	--color-red-dark: hsla(16, 100%, 37%, 1);
-	--color-green-anchor: hsla(77, 100%, 50%, 1);
-	--color-neutral-darkest: hsla(77, 33%, 7%, 1);
-	--color-neutral-dark: hsla(77, 5%, 19%, 1);
-	--color-neutral-medium: hsla(77, 2%, 48%, 1);
-	--color-neutral-light: hsla(77, 6%, 84%, 1);
-	--color-neutral-lightest: hsla(77, 16%, 93%, 1);
+	--color-green-light: hsla(128, 61%, 53%, 1);
+	--color-green-dark: hsla(128, 89%, 27%, 1);
+	--color-blue-light: hsla(194, 61%, 53%, 1);
+	--color-blue-dark: hsla(194, 89%, 27%, 1);
+	--color-red-medium: hsla(13, 100%, 26%, 1);
+	--color-neutral-darkest: hsla(31, 58%, 9%, 1);
+	--color-neutral-darker: hsla(31, 60%, 15%, 1);
+	--color-neutral-dark: hsla(31, 60%, 25%, 1);
+	--color-neutral-medium: hsla(31, 50%, 50%, 1);
+	--color-neutral-light: hsla(31, 100%, 82%, 1);
+	--color-neutral-lighter: hsla(31, 100%, 90%, 1);
+	--color-neutral-lightest: hsla(31, 100%, 97%, 1);
+
+	--color-shadows: hsla(31, 58%, 9%, .2);
 }
 
 
 /* Color Theme Swatches in Hex */
-.color-blue-light-hex { color: #C2E7FF; }
-.color-blue-dark-hex { color: #004D80; }
-.color-green-anchor-hex { color: #B3FF00; }
-.color-red-light-hex { color: #FF4800; }
-.color-red-dark-hex { color: #BF3600; }
+.ELW-neutral-lightest-hex { color: #FFF9F2; }
+.ELW-neutral-lighter-hex { color: #FFE6CC; }
+.ELW-neutral-light-hex { color: #FFD4A6; }
+.ELW-neutral-darker-hex { color: #402910; }
+.ELW-neutral-darkest-hex { color: #26180A; }
 
 /* Color Theme Swatches in RGBA */
-.color-blue-light-rgba { color: rgba(194, 231, 255, 1); }
-.color-blue-dark-rgba { color: rgba(0, 77, 128, 1); }
-.color-green-anchor-rgba { color: rgba(179, 255, 0, 1); }
-.color-red-light-rgba { color: rgba(255, 72, 0, 1); }
-.color-red-dark-rgba { color: rgba(191, 54, 0, 1); }
+.ELW-neutral-lightest-rgba { color: rgba(255, 249, 242, 1); }
+.ELW-neutral-lighter-rgba { color: rgba(255, 230, 204, 1); }
+.ELW-neutral-light-rgba { color: rgba(255, 212, 166, 1); }
+.ELW-neutral-darker-rgba { color: rgba(64, 41, 16, 1); }
+.ELW-neutral-darkest-rgba { color: rgba(38, 24, 10, 1); }
 
 /* Color Theme Swatches in HSLA */
-.color-blue-light-hsla { color: hsla(203, 100%, 88%, 1); }
-.color-blue-dark-hsla { color: hsla(203, 100%, 25%, 1); }
-.color-green-anchor-hsla { color: hsla(77, 100%, 50%, 1); }
-.color-red-light-hsla { color: hsla(16, 100%, 50%, 1); }
-.color-red-dark-hsla { color: hsla(16, 100%, 37%, 1); }
-
+.ELW-neutral-lightest-hsla { color: hsla(31, 100%, 97%, 1); }
+.ELW-neutral-lighter-hsla { color: hsla(31, 100%, 90%, 1); }
+.ELW-neutral-light-hsla { color: hsla(31, 100%, 82%, 1); }
+.ELW-neutral-medium-hsla { color: hsla(31, 50%, 50%, 1); }
+.ELW-neutral-dark-hsla { color: hsla(31, 60%, 25%, 1); }
+.ELW-neutral-darker-hsla { color: hsla(31, 60%, 15%, 1); }
+.ELW-neutral-darkest-hsla { color: hsla(31, 58%, 9%, 1); }
 
 
 
 
 /* Color Theme Swatches in Hex */
-.color-neutral-darkest-hex { color: #161A0D; }
-.color-neutral-dark-hex { color: #31332E; }
-.color-neutral-medium-hex { color: #7E8079; }
-.color-neutral-light-hex { color: #D7D9D4; }
-.color-neutral-lightest-hex { color: #F1F2ED; }
+.ELW-colors-green-dark-hex { color: #078518; }
+.ELW-colors-green-light-hex { color: #3FD153; }
+.ELW-colors-blue-light-hex { color: #3FADD1; }
+.ELW-colors-blue-dark-hex { color: #076585; }
+.ELW-colors-red-medium-hex { color: #851D00; }
 
 /* Color Theme Swatches in RGBA */
-.color-neutral-darkest-rgba { color: rgba(22, 26, 13, 1); }
-.color-neutral-dark-rgba { color: rgba(49, 51, 46, 1); }
-.color-neutral-medium-rgba { color: rgba(126, 128, 121, 1); }
-.color-neutral-light-rgba { color: rgba(215, 217, 212, 1); }
-.color-neutral-lightest-rgba { color: rgba(241, 242, 237, 1); }
+.ELW-colors-green-dark-rgba { color: rgba(7, 133, 24, 1); }
+.ELW-colors-green-light-rgba { color: rgba(63, 209, 83, 1); }
+.ELW-colors-blue-light-rgba { color: rgba(63, 173, 209, 1); }
+.ELW-colors-blue-dark-rgba { color: rgba(7, 101, 133, 1); }
+.ELW-colors-red-medium-rgba { color: rgba(133, 29, 0, 1); }
 
 /* Color Theme Swatches in HSLA */
-.color-neutral-darkest-hsla { color: hsla(78, 33%, 7%, 1); }
-.color-neutral-dark-hsla { color: hsla(83, 5%, 19%, 1); }
-.color-neutral-medium-hsla { color: hsla(77, 2%, 48%, 1); }
-.color-neutral-light-hsla { color: hsla(83, 6%, 84%, 1); }
-.color-neutral-lightest-hsla { color: hsla(72, 16%, 93%, 1); }
+.ELW-colors-green-dark-hsla { color: hsla(128, 89%, 27%, 1); }
+.ELW-colors-green-light-hsla { color: hsla(128, 61%, 53%, 1); }
+.ELW-colors-blue-light-hsla { color: hsla(194, 61%, 53%, 1); }
+.ELW-colors-blue-dark-hsla { color: hsla(194, 89%, 27%, 1); }
+.ELW-colors-red-medium-hsla { color: hsla(13, 100%, 26%, 1); }
 
 
 html, body {
@@ -66,7 +71,7 @@ html, body {
 }
 
 body {
-	background-color: var(--color-neutral-light);
+	background-color: var(--color-neutral-lightest);
 	color: var(--color-neutral-darkest);
 	margin: 0;
 	padding: 0;
@@ -75,17 +80,17 @@ body {
 }
 
 a {
-	color: var(--color-red-dark);
+	color: var(--color-red-medium);
 	text-decoration: none;
 }
 
 a:hover {
 	text-decoration: underline;
-	color: var(--color-red-dark);
+	color: var(--color-red-medium);
 }
 
 a:visited {
-	color: var(--color-red-dark);
+	color: var(--color-red-medium);
 }
 
 label {
