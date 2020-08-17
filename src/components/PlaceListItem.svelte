@@ -1,14 +1,21 @@
 <style>
 
     li.place-list-item {
+        background-color: var(--color-background-bright);
+        filter: drop-shadow(.2em .2em .3em var(--color-shadows-subtle));
+        border-width: 1px 0 0 1px;
+        border-style: solid;
+        border-color: var(--color-neutral-lightest);
+        border-radius: 2px 0 2em 0;
         display: flex;
         justify-content: space-between;
         align-content: stretch;
         padding: .75em 1em;
         max-width: 100%;
-        min-width: 50%;
+        min-width: 48%;
+        margin: 0.5em 1%;
         box-sizing: border-box;
-        /*flex-grow: 1;*/
+        flex-grow: 1;
     }
 
     .leftside {
@@ -41,6 +48,10 @@
         text-align: right;
     }
 
+    .status.unknown {
+        color: var(--color-neutral-medium);
+    }
+
     .status .confidence {
         color: var(--color-neutral-medium);
         font-style: italic;
@@ -58,9 +69,11 @@
         margin: 0;
     }
 
-    .coords {
+    .display-class-name.unknown {
         color: var(--color-neutral-medium);
-        font-style: italic;
+    }
+
+    .coords-container {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -78,6 +91,11 @@
         list-style-type: none;
         padding: 0;
         margin: 0;
+    }
+
+    a.coords {
+        font-weight: 400;
+        font-style: italic;
     }
 
     .locators {
@@ -104,19 +122,35 @@
 <li class="place-list-item">
     <div class="leftside">
         <PlaceDisplayClassIcon place={place} />
-        <div class="coords">
-            <Icon data={faMapMarker}/>
-            <ul>
-                <li class="lat">{place.info.locators.lat.toFixed(5)},</li>
-                <li class="lon">{place.info.locators.lon.toFixed(5)}</li>
-            </ul>
-        </div>
+        <a class="coords" href="https://www.openstreetmap.org/node/{place.osmID}">
+            <div class="coords-container">
+                <Icon data={faMapMarker}/>
+                <ul>
+                    <li class="lat">{place.info.locators.lat.toFixed(5)},</li>
+                    <li class="lon">{place.info.locators.lon.toFixed(5)}</li>
+                </ul>
+            </div>
+        </a>
     </div>
     <div class="rightside">
         <div class="identity">
             <h2>{place.name}</h2>
             <div class="displayclass-status">
-                <p>{place.info.identity.displayClass}</p>
+                <p>
+                    Primarily a <span class="display-class-name"
+                        class:unknown="{!place.info.identity.displayClass}">
+                    {#if place.info.identity.displayClass === 'grocery'}
+                        grocery store
+                    {:else if place.info.identity.displayClass === 'prepared_food'}
+                        restaurant
+                    {:else if place.info.identity.displayClass === 'light_bar'}
+                        bar
+                    {:else if place.info.identity.displayClass === 'full_bar'}
+                        bar (full)
+                    {:else}
+                        ...something?
+                    {/if}
+                </span></p>
                 {#if place.status === 'open'}
                     <p class="status info">Open for business!
                         <span class="confidence">(maybe)</span></p>
@@ -130,7 +164,7 @@
                     <p class="status admonishment">Permanently closed
                         <span class="confidence">(maybe)</span></p>
                 {:else}
-                    <p class="status warning">Maybe open, maybe closed?</p>
+                    <p class="status warning unknown">Business status unknown</p>
                 {/if}
             </div>
         </div>

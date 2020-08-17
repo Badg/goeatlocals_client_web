@@ -16,9 +16,10 @@ const apiRoutePlaceCitiesAll = '/api/places/cities'
 
 
 class Place {
-    constructor(placeID, name, status, info) {
+    constructor(placeID, osmID, name, status, info) {
         // These are all from the constructor signature
         this.placeID = placeID;
+        this.osmID = osmID;
         this.name = name;
         this.status = status;
         this.info = info;
@@ -46,6 +47,7 @@ class Place {
     static fromApiResponse(jsonObj) {
         return new this(
             jsonObj.placeID,
+            jsonObj.osmID,
             jsonObj.name,
             jsonObj.status,
             jsonObj.info

@@ -4,8 +4,21 @@
 
 
 <style>
+
+    :global(body::after) {
+        content: "";
+        /*background: url("");*/
+        opacity: .1;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: -1;   
+    }
+
     .list-container {
-        max-width: 1280px;
+        max-width: 1440px;
         margin-right: auto;
         margin-left: auto;
         box-sizing: border-box;
@@ -32,12 +45,12 @@
         margin-right: auto;
     }
 
-    .placelist {
+/*    .placelist {
         border: 1px solid var(--color-neutral-light);
         border-radius: 1em;
         background-color: var(--color-background-bright);
         filter: drop-shadow(7px 7px 5px var(--color-shadows));
-    }
+    }*/
 </style>
 
 
