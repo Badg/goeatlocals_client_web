@@ -7,7 +7,7 @@
         pointer-events: auto;
         height: 600px;
         width: 300px;
-        background-color: var(--color-neutral-lightest);
+        background-color: var(--color-background-bright);
         color: var(--color-neutral-darkest);
         padding: 15px;
         border-radius: 0 0 10px 0;

@@ -35,7 +35,7 @@
     .placelist {
         border: 1px solid var(--color-neutral-light);
         border-radius: 1em;
-        background-color: var(--color-neutral-lightest);
+        background-color: var(--color-background-bright);
         filter: drop-shadow(7px 7px 5px var(--color-shadows));
     }
 </style>

@@ -2,7 +2,7 @@
     .mapfilters-flex {
         display: flex;
         align-items: center;
-        background-color: var(--color-neutral-lightest);
+        background-color: var(--color-background-bright);
         color: var(--color-neutral-darkest);
         box-shadow: 7px 7px 15px 5px rgba(0, 0, 0, 0.3);
         border-radius: 0 0 0 10px;

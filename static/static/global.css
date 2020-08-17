@@ -4,41 +4,18 @@
 	--color-blue-light: hsla(194, 61%, 53%, 1);
 	--color-blue-dark: hsla(194, 89%, 27%, 1);
 	--color-red-medium: hsla(13, 100%, 26%, 1);
-	--color-neutral-darkest: hsla(31, 58%, 9%, 1);
-	--color-neutral-darker: hsla(31, 60%, 15%, 1);
-	--color-neutral-dark: hsla(31, 60%, 25%, 1);
-	--color-neutral-medium: hsla(31, 50%, 50%, 1);
-	--color-neutral-light: hsla(31, 100%, 82%, 1);
-	--color-neutral-lighter: hsla(31, 100%, 90%, 1);
-	--color-neutral-lightest: hsla(31, 100%, 97%, 1);
+	--color-neutral-darkest: hsla(13, 5%, 7%, 1);
+	--color-neutral-darker: hsla(13, 5%, 25%, 1);
+	--color-neutral-dark: hsla(13, 5%, 35%, 1);
+	--color-neutral-medium: hsla(13, 5%, 50%, 1);
+	--color-neutral-light: hsla(13, 5%, 65%, 1);
+	--color-neutral-lighter: hsla(13, 5%, 80%, 1);
+	--color-neutral-lightest: hsla(13, 3%, 93%, 1);
 
-	--color-shadows: hsla(31, 58%, 9%, .2);
+	--color-shadows: hsla(13, 5%, 7%, .2);
+	--color-shadows-subtle: hsla(13, 5%, 7%, .1);
+	--color-background-bright: white;
 }
-
-
-/* Color Theme Swatches in Hex */
-.ELW-neutral-lightest-hex { color: #FFF9F2; }
-.ELW-neutral-lighter-hex { color: #FFE6CC; }
-.ELW-neutral-light-hex { color: #FFD4A6; }
-.ELW-neutral-darker-hex { color: #402910; }
-.ELW-neutral-darkest-hex { color: #26180A; }
-
-/* Color Theme Swatches in RGBA */
-.ELW-neutral-lightest-rgba { color: rgba(255, 249, 242, 1); }
-.ELW-neutral-lighter-rgba { color: rgba(255, 230, 204, 1); }
-.ELW-neutral-light-rgba { color: rgba(255, 212, 166, 1); }
-.ELW-neutral-darker-rgba { color: rgba(64, 41, 16, 1); }
-.ELW-neutral-darkest-rgba { color: rgba(38, 24, 10, 1); }
-
-/* Color Theme Swatches in HSLA */
-.ELW-neutral-lightest-hsla { color: hsla(31, 100%, 97%, 1); }
-.ELW-neutral-lighter-hsla { color: hsla(31, 100%, 90%, 1); }
-.ELW-neutral-light-hsla { color: hsla(31, 100%, 82%, 1); }
-.ELW-neutral-medium-hsla { color: hsla(31, 50%, 50%, 1); }
-.ELW-neutral-dark-hsla { color: hsla(31, 60%, 25%, 1); }
-.ELW-neutral-darker-hsla { color: hsla(31, 60%, 15%, 1); }
-.ELW-neutral-darkest-hsla { color: hsla(31, 58%, 9%, 1); }
-
 
 
 
@@ -71,7 +48,7 @@ html, body {
 }
 
 body {
-	background-color: var(--color-neutral-lightest);
+	background-color: var(--color-background-bright);
 	color: var(--color-neutral-darkest);
 	margin: 0;
 	padding: 0;
@@ -80,6 +57,7 @@ body {
 }
 
 a {
+	font-weight: 700;
 	color: var(--color-red-medium);
 	text-decoration: none;
 }
