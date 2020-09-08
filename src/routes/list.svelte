@@ -59,10 +59,10 @@
     import { onMount } from 'svelte';
     import Icon from 'svelte-awesome';
 
-    import { Place, getPlacesForCity } from '../modules/places.mjs';
-    import { placesCache } from '../modules/stores.mjs';
+    import { Place, getPlacesForCity } from '@/modules/places.mjs';
+    import { placesCache } from '@/modules/stores.mjs';
 
-    import PlaceList from '../components/PlaceList.svelte';
+    import PlaceList from '@/components/PlaceList.svelte';
 
     let city = 'oakland';
     let filteredPlaces = [];

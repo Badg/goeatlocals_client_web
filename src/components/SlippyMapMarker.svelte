@@ -40,7 +40,7 @@
 <script>
     import { onMount, onDestroy } from 'svelte';
 
-    import TouchHoverState from '../modules/touchHoverState.mjs';
+    import TouchHoverState from '@/modules/touchHoverState.mjs';
 
 
     export let place;

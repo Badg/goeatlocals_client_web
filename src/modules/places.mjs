@@ -1,8 +1,8 @@
 import mapboxgl from 'mapbox-gl';
 import { goto } from '@sapper/app';
 
-import SlippyMapMarker from '../components/SlippyMapMarker.svelte';
-import { placesCache } from './stores.mjs'
+import SlippyMapMarker from '@/components/SlippyMapMarker.svelte';
+import { placesCache } from '@/modules/stores.mjs'
 
 
 // TODO: do I want something that formats these based on parameters instead of

@@ -110,9 +110,9 @@
     import Icon from 'svelte-awesome';
 
     export let place;
-    import PlaceAddress from '../components/PlaceAddress.svelte';
-    import PlaceContacts from '../components/PlaceContacts.svelte';
-    import PlaceDisplayClassIcon from '../components/PlaceDisplayClassIcon.svelte';
+    import PlaceAddress from '@/components/PlaceAddress.svelte';
+    import PlaceContacts from '@/components/PlaceContacts.svelte';
+    import PlaceDisplayClassIcon from '@/components/PlaceDisplayClassIcon.svelte';
 
     $: website = place.info.locators.website;
     $: phone = place.info.locators.phone;

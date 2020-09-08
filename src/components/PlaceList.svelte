@@ -13,7 +13,7 @@
 <script>
     import { tick, onMount } from 'svelte';
 
-    import PlaceListItem from '../components/PlaceListItem.svelte';
+    import PlaceListItem from '@/components/PlaceListItem.svelte';
 
     export let places = [];
     const placeChunkSize = 25;
