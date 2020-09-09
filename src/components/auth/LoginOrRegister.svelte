@@ -72,6 +72,7 @@
 <script>
     import { createEventDispatcher } from 'svelte';
     import { onMount } from 'svelte';
+    import { fly } from 'svelte/transition';
     import EmailValidator from 'email-validator';
 
     export let email;
@@ -119,7 +120,8 @@
     }
 </script>
 
-<form class="auth" action="javascript:void(0);">
+<form class="auth" action="javascript:void(0);"
+  in:fly="{{ x: 200, duration: 250 }}">
     <div class="labeledInput">
         <label for="email" class="required">Email:</label>
         <input

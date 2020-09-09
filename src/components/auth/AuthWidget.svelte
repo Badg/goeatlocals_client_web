@@ -8,39 +8,43 @@
 </style>
 
 <script>
-    import LoginOrRegister from '@/components/auth/LoginOrRegister.svelte';
-    import EmailSentInterstitial from '@/components/auth/EmailSentInterstitial.svelte';
+    import {
+        LoginOrRegister, ActionPending, EmailSentInterstitial
+    } from '@/components/auth/';
+    import { awaitSleep } from '@/modules/utils.mjs';
 
     let email;
-    let emailPending;
     let authState;
 
-    function handleAuthSubmit(evt) {
+    async function handleAuthSubmit(evt) {
         console.log('Submit pressed!');
         email = evt.detail.email;
-        authState = 'emailSent';
-        emailPending = false;
+        authState = 'actionPending';
+        await awaitSleep(250);
+        authState = 'emailInterstitial';
     }
 
-    function handleResendEmail(evt) {
+    async function handleResendEmail(evt) {
         console.log('Need to resend email!');
-        emailPending = true;
+        authState = 'actionPending';
+        await awaitSleep(1400);
+        authState = 'emailInterstitial';
     }
 
-    function handleReenterEmail(evt) {
+    async function handleReenterEmail(evt) {
         console.log('Need to reenter email!');
         authState = null;
-        emailPending = false;
     }
 </script>
 
 <div class="authWidgetContainer">
-    {#if authState === 'emailSent'}
+    {#if authState === 'emailInterstitial'}
         <EmailSentInterstitial
             email={email}
-            pending={emailPending}
             on:initiateReenterEmail={handleReenterEmail}
             on:initiateResendEmail={handleResendEmail} />
+    {:else if authState === 'actionPending'}
+        <ActionPending />
     {:else}
         <LoginOrRegister email={email} on:authSubmit={handleAuthSubmit} />
     {/if}
