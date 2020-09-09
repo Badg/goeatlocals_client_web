@@ -1,10 +1,18 @@
 <style>
     form.auth {
         display: inline-block;
-        padding: 1em;
         text-align: center;
         box-sizing: border-box;
-        max-width: 100%;
+        width: 100%;
+    }
+
+    form.auth > * {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .labeledInput {
+        text-align: left;
     }
 
     input {
@@ -12,9 +20,12 @@
             just use the default width as a fallback. Otherwise, use the ch
             unit, which will be an *approximate* number of characters
             to show in the box before sliding out-of-frame*/
-        width: 50ch;
+        width: 100%;
         box-sizing: border-box;
-        max-width: 100%;
+        font-size: 1.2em;
+        z-index: 5;
+        display: block;
+        text-align: center;
     }
 
     input[type=text].warn {
@@ -22,11 +33,23 @@
         border: 1px solid var(--color-red-medium);
     }
 
-    form.auth > * {
-        display: block;
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
+    label, input {
+        background-color: white;
+        position: relative;
+    }
+
+    label {
+        display: inline-block;
+        z-index: 7;
+        text-align: left;
+        font-size: .8em;
+        padding: 0 .4em;
+        margin-left: 10%;
+        bottom: -3px;
+    }
+
+    .required::after {
+        content: "*";
     }
 
     label, button {
@@ -48,10 +71,11 @@
 
 <script>
     import { createEventDispatcher } from 'svelte';
+    import { onMount } from 'svelte';
     import EmailValidator from 'email-validator';
 
     export let email;
-    export let password;
+    let password;
 
     const dispatch = createEventDispatcher();
     const submitEvent = 'authSubmit';
@@ -65,9 +89,20 @@
 
     $: authStyle = password ? passDesc : emailDesc;
 
+    onMount(async () => {
+        if (email) {
+            validate();
+        }
+    });
+
     function validateAndDispatch(evt) {
         validate();
-        if (emailValid){ dispatch(submitEvent); }
+        if (emailValid){
+            dispatch(submitEvent, {
+                email: email,
+                password: password
+            });
+        }
     }
 
     function validate() {
@@ -85,21 +120,25 @@
 </script>
 
 <form class="auth" action="javascript:void(0);">
-    <label for="email">Email:</label>
-    <input
-        class="email"
-        type="text"
-        id="email" name="email"
-        placeholder="your.email@example.com"
-        class:warn={emailWarn}
-        bind:value={email}
-        on:input={validate}/>
-    <label for="password">Password:</label>
-    <input
-        class="password"
-        type="password"
-        id="password" name="password"
-        bind:value={password} />
+    <div class="labeledInput">
+        <label for="email" class="required">Email:</label>
+        <input
+            class="email"
+            type="text"
+            id="email" name="email"
+            placeholder="your.email@example.com"
+            class:warn={emailWarn}
+            bind:value={email}
+            on:input={validate}/>
+    </div>
+    <div class="labeledInput">
+        <label for="password">Password:</label>
+        <input
+            class="password"
+            type="password"
+            id="password" name="password"
+            bind:value={password} />
+    </div>
     <button
         type="submit"
         class="submit"
