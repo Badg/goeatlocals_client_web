@@ -9,7 +9,10 @@
 
 <script>
     import {
-        LoginOrRegister, ActionPending, EmailSentInterstitial
+        Authenticated,
+        LoginOrRegister,
+        ActionPending,
+        EmailSentInterstitial
     } from '@/components/auth/';
     import { awaitSleep } from '@/modules/utils.mjs';
 
@@ -22,6 +25,8 @@
         authState = 'actionPending';
         await awaitSleep(250);
         authState = 'emailInterstitial';
+        await awaitSleep(1400);
+        authState = 'authenticated';
     }
 
     async function handleResendEmail(evt) {
@@ -35,6 +40,11 @@
         console.log('Need to reenter email!');
         authState = null;
     }
+
+    async function handleLogout(evt) {
+        console.log('Logging out!');
+        authState = null;
+    }
 </script>
 
 <div class="authWidgetContainer">
@@ -45,6 +55,8 @@
             on:initiateResendEmail={handleResendEmail} />
     {:else if authState === 'actionPending'}
         <ActionPending />
+    {:else if authState === 'authenticated'}
+        <Authenticated email={email} on:initiateLogout={handleLogout} />
     {:else}
         <LoginOrRegister email={email} on:authSubmit={handleAuthSubmit} />
     {/if}
